@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cohort_PanthersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="EmailID" />
+    </Key>
+    <Property Name="EmailID" Type="int" Nullable="false" />
+    <Property Name="Sender" Type="nchar" MaxLength="50" />
+    <Property Name="Body" Type="text" />
+    <Property Name="RecievedTime" Type="datetime" />
+    <Property Name="Subject" Type="nchar" MaxLength="200" />
+    <Property Name="Reciever" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="Cohort_PanthersModelStoreContainer">
+    <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

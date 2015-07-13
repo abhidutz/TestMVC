@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cohort_PanthersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="int" Nullable="false" />
+    <Property Name="emailId" Type="int" />
+    <Property Name="poster" Type="nchar" MaxLength="50" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="comment" Type="text" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="EmailID" />
+    </Key>
+    <Property Name="EmailID" Type="int" Nullable="false" />
+    <Property Name="Sender" Type="nchar" MaxLength="50" />
+    <Property Name="Body" Type="text" />
+    <Property Name="RecievedTime" Type="datetime" />
+    <Property Name="Subject" Type="nchar" MaxLength="200" />
+    <Property Name="Reciever" Type="nchar" MaxLength="50" />
+    <Property Name="Assigned" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Comments_Emails">
+    <End Role="Emails" Type="Self.Emails" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emails">
+        <PropertyRef Name="EmailID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="emailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Cohort_PanthersModelStoreContainer">
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comments_Emails" Association="Self.FK_Comments_Emails">
+      <End Role="Emails" EntitySet="Emails" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

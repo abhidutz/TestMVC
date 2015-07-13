@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cohort_PanthersModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="EmailID" />
+    </Key>
+    <Property Name="EmailID" Type="Int32" Nullable="false" />
+    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RecievedTime" Type="DateTime" Precision="3" />
+    <Property Name="Subject" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="Reciever" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Assigned" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="Cohort_PanthersModel.FK_Comments_Emails" FromRole="Email" ToRole="Comment" />
+  </EntityType>
+  <EntityContainer Name="Cohort_PanthersEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Emails" EntityType="Self.Email" />
+    <EntitySet Name="Comments" EntityType="Cohort_PanthersModel.Comment" />
+    <AssociationSet Name="FK_Comments_Emails" Association="Cohort_PanthersModel.FK_Comments_Emails">
+      <End Role="Email" EntitySet="Emails" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="Int32" Nullable="false" />
+    <Property Name="emailId" Type="Int32" />
+    <Property Name="poster" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Email" Relationship="Cohort_PanthersModel.FK_Comments_Emails" FromRole="Comment" ToRole="Email" />
+  </EntityType>
+  <Association Name="FK_Comments_Emails">
+    <End Type="Cohort_PanthersModel.Email" Role="Email" Multiplicity="0..1" />
+    <End Type="Cohort_PanthersModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Email">
+        <PropertyRef Name="EmailID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="emailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

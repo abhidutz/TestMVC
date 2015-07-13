@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cohort_PanthersModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Cohort_PanthersEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Emails" EntityType="Cohort_PanthersModel.Email" />
+  </EntityContainer>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="EmailID" />
+    </Key>
+    <Property Name="EmailID" Type="Int32" Nullable="false" />
+    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RecievedTime" Type="DateTime" Precision="3" />
+    <Property Name="Subject" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="Reciever" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>

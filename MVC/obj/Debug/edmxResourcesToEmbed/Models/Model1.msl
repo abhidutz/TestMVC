@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Cohort_PanthersModelStoreContainer" CdmEntityContainer="Cohort_PanthersEntities1">
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="Cohort_PanthersModel.Email">
+        <MappingFragment StoreEntitySet="Emails">
+          <ScalarProperty Name="Assigned" ColumnName="Assigned" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="RecievedTime" ColumnName="RecievedTime" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Reciever" ColumnName="Reciever" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="Cohort_PanthersModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="comment1" ColumnName="comment" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="poster" ColumnName="poster" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="commentId" ColumnName="commentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,106 @@
+﻿@model MVC.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+
+<div class="login-box-body">
+   
+
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {    @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    <div class="form-group has-feedback">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+    <div class="form-group has-feedback">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="checkbox icheck">
+                <label>
+                
+                       @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox icheck" })
+                @Html.LabelFor(m => m.RememberMe)
+                </label>
+            </div>
+        </div><!-- /.col -->
+        <div class="col-xs-4">
+            <input type="submit" class="btn btn-primary btn-block btn-flat" value="Log in" />
+        </div><!-- /.col -->
+    </div>
+      }
+        @*<form action="../../index2.html" method="post">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                    </div>
+                </div><!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div><!-- /.col -->
+            </div>
+        </form>*@
+
+
+        <a href="#">I forgot my password</a><br>
+        <a href="Account/Register" class="text-center">Register a new membership</a>
+
+    </div><!-- /.login-box-body -->
+
+
+@*<section id="loginForm">
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>
+}
+</section>*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
