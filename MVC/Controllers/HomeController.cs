@@ -18,7 +18,7 @@ namespace MVC.Controllers
     {
 
 
-        Cohort_PanthersEntities1 db = new Cohort_PanthersEntities1();
+        Cohort_PanthersEntities3 db = new Cohort_PanthersEntities3();
        
         public ActionResult Index()
         {
@@ -34,15 +34,28 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult getComments(int id)
+        public JsonResult Comments(CommentPost c)
         
-        {
+        {   Comment commen = new Comment();
+            commen.comment1 = c.comment;
+            commen.emailId = c.emailID;
+            commen.poster = WebSecurity.CurrentUserName;
+            commen.time = System.DateTime.Now;
             
+            db.Comments.Add(commen);
+            db.SaveChanges();
 
-          var res =   db.Comments.Where(c => c.emailId == id);
+          var res =   db.Comments.Where(co => co.emailId == c.emailID);
 
-    
-            return Json(res.ToList().ToString());
+
+          return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpGet]
+        public JsonResult getComments(int id) {
+
+         var data =   db.Comments.Where(c => c.emailId == id).ToList();
+         return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         
         }
 
@@ -63,6 +76,7 @@ namespace MVC.Controllers
            var cdd = db.Emails.Where(c => c.EmailID == id);
            var css = cdd.ToList();
            ViewBag.email = css[0];
+           ViewBag.emailId = id;
            ViewBag.Comments=db.Comments.Where(c => c.emailId == id).ToList();
             return View();
         
