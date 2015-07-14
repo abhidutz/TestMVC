@@ -1,4 +1,4 @@
-﻿
+﻿@model MVC.Models.CommentPost
 @{
     ViewBag.Title = "DetailEmail";
 }
@@ -135,15 +135,41 @@
                 <!-- chat item -->
 
                 }
+            <script>
 
+                $.ajax({
+                    dataType: "json",
+                    url: "/Home/getComments/1",
+                    success: function (data) {
+                        var obj = JSON.parse(data);
+                        alert(obj);
+                    }
+                });
 
-            </div><!-- /.chat -->
-            @using (Html.BeginForm("DetailEmail", "Home", FormMethod.Post))
+                (function worker() {
+                $.ajax({
+                url: '/Home/test.html',
+                success: function(data) {
+                $('.result').html(data);
+                },
+                complete: function() {
+                // Schedule the next request when the current one's complete
+                setTimeout(worker, 5000);
+                }
+                });
+                })();
+    </script>
+
+            </div><!-- /.chat -->   
+            @using (Ajax.BeginForm("Comments", "Home", new AjaxOptions { UpdateTargetId = "chat-box" }))
             {
                 <div class="box-footer">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <input class="form-control" placeholder="Type Comment..." style="width:90%" />
+                            @*<input class="form-control" placeholder="Type Comment..." style="width:90%" />*@
+                          
+                            @Html.TextBoxFor(model => model.comment, new { @class = "form-control", @Style = "width:90%" })
+                            @Html.TextBoxFor(model => model.emailID, new { @Value = @ViewBag.emailId})
                           
                             <input type="submit" value="Post" class="btn btn-success" />
                             @*<button class="btn btn-success"><i class="fa fa-plus"></i></button>*@
