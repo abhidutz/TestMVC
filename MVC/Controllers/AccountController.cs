@@ -66,7 +66,7 @@ namespace MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return View("Register", "_RegisterLayout");
         }
 
         //
@@ -93,7 +93,7 @@ namespace MVC.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Register", "_RegisterLayout",model);
         }
 
         //
