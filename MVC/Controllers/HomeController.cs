@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
@@ -26,8 +26,12 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            else { 
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            else {
+
+            var notifications = db.Emails.Where(c =>c.Assigned !=WebSecurity.CurrentUserName).ToList();
+            ViewBag.notifications = notifications;
+            ViewBag.nCount = notifications.Count;
+                ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             return View();
             }
 
