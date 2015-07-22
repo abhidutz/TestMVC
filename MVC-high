@@ -37,8 +37,7 @@ namespace MVC.Models
 
         .highlight { background-color: lightblue }
     </style>
- <script>
- ///at the bottom of page. after jquery load
+  <script>
         jQuery.fn.highlight = function (pat) {
             function innerHighlight(node, pat) {
                 var skip = 0;
@@ -48,6 +47,11 @@ namespace MVC.Models
                     if (pos >= 0) {
                         var spannode = document.createElement('span');
                         spannode.className = 'highlight';
+                        var com = prompt("Please enter you comments", "");
+                        //spannode.onmouseover = "highlightOver(this)";
+                        spannode.setAttribute("onmouseover", "highlightOver(this)");
+                        spannode.setAttribute("data-comment", com);
+                     
                         var middlebit = node.splitText(pos);
                         var endbit = middlebit.splitText(pat.length);
                         var middleclone = middlebit.cloneNode(true);
@@ -108,11 +112,17 @@ namespace MVC.Models
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
-                        alert('Success');
+                      //  alert('Success');
                     }
 
                 });
             }
         });
     });
+
+    function highlightOver(a) {
+        alert($(a).data('comment'));
+    }
+
+    
     </script>
