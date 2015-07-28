@@ -1,0 +1,29 @@
+<system.webServer>
+<isapiFilters>
+<clear />
+<filter name="ASP.Net_2.0.50727-64" path="%windir%\Microsoft.NET\Framework64\v2.0.50727\aspnet_filter.dll" enabled="true" enableCache="true" preCondition="bitness64" />
+<filter name="ASP.Net_2.0.50727.0" path="%windir%\Microsoft.NET\Framework\v2.0.50727\aspnet_filter.dll" enabled="true" enableCache="true" preCondition="bitness32" />
+<filter name="jakarta" path="C:\Program Files (x86)\Apache Software Foundation\Tomcat 7.0\bin\isapi_redirect.dll" enabled="true" enableCache="false" preCondition="bitness64" />
+<filter name="SiteMinder Agent" path="C:\Program Files\CA\webagent\win64\bin\ISAPI6WebAgent.dll" enabled="true" preCondition="classicMode,bitness64" />
+<filter name="SiteMinder Agent-32" path="C:\Program Files\CA\webagent\win32\bin\ISAPI6WebAgent.dll" enabled="true" preCondition="classicMode,bitness32" />
+</isapiFilters>
+<modules>
+<add name="CASiteMinderWebagentModule" preCondition="integratedMode,bitness64" />
+<add name="CASiteMinderWebagentModule-32" preCondition="integratedMode,bitness32" />
+</modules>
+<handlers>
+<add name="handler-wa-32" path="*" verb="*" modules="IsapiModule" scriptProcessor="C:\Program Files\CA\webagent\win32\bin\ISAPI6WebAgent.dll" resourceType="Unspecified" requireAccess="None" preCondition="classicMode,bitness32" />
+<add name="CASiteMinderWebAgentHandler-fcc-32" path="*.fcc" verb="*"
+     modules="CASiteMinderWebagentModule-32" resourceType="Unspecified" preCondition="integratedMode,bitness32" />
+<add name="CASiteMinderWebAgentHandler-ntc-32" path="*.ntc" verb="*" modules="CASiteMinderWebagentModule-32" resourceType="Unspecified" preCondition="integratedMode,bitness32" />
+<add name="CASiteMinderWebAgentHandler-ccc-32" path="*.ccc" verb="*" modules="CASiteMinderWebagentModule-32" resourceType="Unspecified" preCondition="integratedMode,bitness32" />
+<add name="CASiteMinderWebAgentHandler-scc-32" path="*.scc" verb="*" modules="CASiteMinderWebagentModule-32" resourceType="Unspecified" preCondition="integratedMode,bitness32" />
+<add name="CASiteMinderWebAgentHandler-kcc-32" path="*.kcc" verb="*" modules="CASiteMinderWebagentModule-32" resourceType="Unspecified" preCondition="integratedMode,bitness32" />
+<add name="handler-wa" path="*" verb="*" modules="IsapiModule" scriptProcessor="C:\Program Files\CA\webagent\win64\bin\ISAPI6WebAgent.dll" resourceType="Unspecified" requireAccess="None" preCondition="classicMode,bitness64" />
+<add name="CASiteMinderWebAgentHandler-fcc" path="*.fcc" verb="*" modules="CASiteMinderWebagentModule" resourceType="Unspecified" preCondition="integratedMode,bitness64" />
+<add name="CASiteMinderWebAgentHandler-ntc" path="*.ntc" verb="*" modules="CASiteMinderWebagentModule" resourceType="Unspecified" preCondition="integratedMode,bitness64" />
+<add name="CASiteMinderWebAgentHandler-ccc" path="*.ccc" verb="*" modules="CASiteMinderWebagentModule" resourceType="Unspecified" preCondition="integratedMode,bitness64" />
+<add name="CASiteMinderWebAgentHandler-scc" path="*.scc" verb="*" modules="CASiteMinderWebagentModule" resourceType="Unspecified" preCondition="integratedMode,bitness64" />
+<add name="CASiteMinderWebAgentHandler-kcc" path="*.kcc" verb="*" modules="CASiteMinderWebagentModule" resourceType="Unspecified" preCondition="integratedMode,bitness64" />
+</handlers>
+</system.webServer>
